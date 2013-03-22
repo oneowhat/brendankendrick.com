@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  #site-tabs
+    ul
+      li
+        a(href="/") brendankendrick.com
+      li
+        a(href="#") resume
+      li.current
+        a(href="articles") blog
+  #page
+    #articles
+      | #{message}
+    #side-bar
+      | side bar stuff

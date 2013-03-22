@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  - var action = '/products'
+  if (!product.isNew)
+    - action += '/'+product.id
+    
+  if (typeof errors !== 'undefined')
+    .err
+      ul
+        each error in errors
+          li= error.type
+          
+  .row
+    .span
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+        if (!product.isNew)
+          input(type="hidden", name="_method", value="PUT")
+        
+        .control-group
+          label.control-label(for="name") Name
+          .controls
+            input#name.input-xlarge(type="text", name="name", value=product.name)
+        
+        .control-group
+          label.control-label(for="description") Description
+          .controls
+            input#name.input-xlarge(type="text", name="description", value=product.description)
+            
+        .form-actions
+          button.btn.btn-primary(type='submit') Save
