@@ -71,15 +71,10 @@ a:hover { color: #336600; text-decoration: none; }
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
 }
 
-#banner {
-	background: transparent;
-	width: 100%;
-	font-weight: bold;
-}
-
-#banner-image {
-  background: url(../images/break.png);
-  height: 191px;
+#login {
+  max-width: 1000px;
+  padding: 20px;
+  min-height: 450px;
 }
 
 #page {    
@@ -165,6 +160,12 @@ ul.section-list {
 
 ul.section-list li {
   
+}
+
+.form {
+  max-width: 1000px;
+  padding: 20px;
+  min-height: 450px;
 }
 
 #resume {

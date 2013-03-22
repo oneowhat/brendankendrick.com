@@ -1,14 +1,18 @@
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
+  , Imager = require('imager')
   , env = process.env.NODE_ENV || 'development'
   , config = require('../../config/config')[env];
   
 var Product = new Schema({
   name: { type: String, default : '', trim : true },
   description: { type : String, default : '', trim : true },
-  imgPath: { type: String, default : '' },
   price: { type : Number, min : 0 },
+  image: {
+    cdnUri: String,
+    files: []
+  },
   createdAt: { type : Date, default : Date.now }
 });
 
@@ -23,6 +27,13 @@ Product.path('description').validate(function (description) {
 Product.path('price').validate(function (price) {
   return price > 0;
 }, 'Price cannot be 0');
+
+Product.methods = {
+  
+  uploadImagesAndSave: function(images, cb) {
+    var imager = new Imager(imagerConfig, 'S3');
+  }
+};
 
 Product.statics = {
 

@@ -1,7 +1,13 @@
 {
-  "name": "application-name",
+  "name": "brendankendrick.com",
+  "description": "Personal website of Brendan Kendrick",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "author": "Brendan Kendrick-Walton <brendan@brendankendrick.com> (https://github.com/oneowhat)",
+  "engines": {
+    "node": "0.8.20",
+    "npm": "1.2.11"
+  },
   "scripts": {
     "start": "node app"
   },
@@ -10,6 +16,11 @@
     "mongoose": "*",
     "async": "~0.2.6",
     "jade": "~0.28.2",
-    "ejs": "~0.8.3"
+    "passport": "~0.1.16",
+    "underscore": "~1.4.4",
+    "imager": "~0.1.6",
+    "passport-local": "~0.1.6",
+    "connect-mongo": "~0.3.2",
+    "connect-flash": "~0.1.0"
   }
 }
