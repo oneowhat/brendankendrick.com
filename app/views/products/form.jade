@@ -4,7 +4,7 @@ block products
   #page    
     - var action = '/products'
     if (!product.isNew)
-      - action += '/'+product.id
+      - action += '/' + product.id
       
     if (typeof errors !== 'undefined')
       .err
@@ -24,14 +24,27 @@ block products
             input#name.input-xlarge(type="text", name="name", value=product.name)
         
         .control-group
+          label.control-label(for='image') Image
+          .controls
+            input(type='file', name="image")
+        
+        .control-group
           label.control-label(for="description") Description
           .controls
-            input#name.input-xlarge(type="text", name="description", value=product.description)
+            textarea#desc.input-xlarge(type="text", rows="5", name="description")=product.description
         
         .control-group
           label.control-label(for="price") Price
           .controls
-            input#name.input-xlarge(type="text", name="price", value=product.price)
+            input#price.input-xlarge(type="text", name="price", value=product.price)
             
         .form-actions
           button.btn.btn-primary(type='submit') Save
+          &nbsp;
+          
+          - var cancelAction = '/products'
+          if (!product.isNew)
+            - cancelAction += '/' + product.id
+            
+          a.btn(href=cancelAction, title="cancel") Cancel
+            

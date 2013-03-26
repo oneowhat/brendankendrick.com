@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  
+  #site-tabs
+    ul
+      li.current
+        a(href="#") brendankendrick.com
+      li 
+        a(href="resume") resume
+      li
+        a(href="articles") blog
+  #page
+    #page-left.page-left
+      #logo
+        span.name Brendan Kendrick
+        &nbsp
+        span.nouns | Web Developer, Programmer
+    #page-right.page-right
+      #sections
+        .section
+          .col30
+            | ABOUT ME
+          .col70
+            | I am a Software Developer in San Francisco, CA. I am thrilled by the ever-changing technology landscape.
+            p 
+              a(href='mailto:brendan@brendankendrick.com') brendan@brendankendrick.com
+            
+        .section
+          .col30
+            | ELSEWHERE
+          .col70
+            ul.section-list
+              li
+                a(href='http://www.linkedin.com/in/brendankendrick/') LinkedIn
+              li
+                a(href='https://github.com/oneowhat') GitHub
+              li 
+                a(href='http://www.flickr.com/people/cameramedusa/') Flickr
+              li
+                a(href='https://twitter.com/butterbaste', title='@butterbaste') Twitter 
+              li
+                a(href='http://nomadpool.com/users/219', title='Play pool on a real table against real people') Nomad
+            
+        .section
+          .col30
+            | PROJECTS
+          .col70
+            a(href='http://www.studio253finishes.com') Studio 253 Finishes
+            
+        .section
+          .col30
+            &nbsp;
+          .col70
+            | Check out my 
+            &nbsp;
+            a(href="products") t-shirts!
+            
+          
+        
+

@@ -1,19 +1,16 @@
-
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , Imager = require('imager')
   , env = process.env.NODE_ENV || 'development'
-  , config = require('../../config/config')[env];
+  , config = require('../../config/config')[env]  
+  , knox = require('knox');
   
 var Product = new Schema({
-  name: { type: String, default : '', trim : true },
-  description: { type : String, default : '', trim : true },
-  price: { type : Number, min : 0 },
-  image: {
-    cdnUri: String,
-    files: []
-  },
-  createdAt: { type : Date, default : Date.now }
+  name: { type: String, default: '', trim: true },
+  description: { type: String, default: '', trim: true },
+  price: { type: Number, min: 0 },
+  image: { type: String },
+  createdAt: { type: Date, default: Date.now },
+  active: { type: Boolean, default: true }
 });
 
 Product.path('name').validate(function (name) {
@@ -30,8 +27,18 @@ Product.path('price').validate(function (price) {
 
 Product.methods = {
   
-  uploadImagesAndSave: function(images, cb) {
-    var imager = new Imager(imagerConfig, 'S3');
+  uploadImageAndSave: function(image, cb) {
+    var self = this;
+    var knoxClient = knox.createClient(config.s3);
+    var s3Headers = {
+      'Content-Type': image.type,
+      'x-amz-acl': 'public-read'
+    };
+    knoxClient.putFile(image.path, image.name, s3Headers, function(err, s3Response){
+      if (err) return cb(err);
+      self.image = knoxClient.https('/'+image.name);
+      self.save(cb);
+    });
   }
 };
 

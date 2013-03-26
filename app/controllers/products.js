@@ -1,9 +1,7 @@
 var mongoose = require('mongoose')
   , async = require('async')
-  , fs = require('fs')
-  , path = require('path')
-  , join = path.join
-  , Product = mongoose.model('Product');
+  , Product = mongoose.model('Product')
+  , _ = require('underscore');
   
 exports.product = function(req, res, next, productId){
   Product.load(productId, function(err, product){
@@ -23,14 +21,8 @@ exports.new = function(req, res){
 
 exports.create = function(req, res) {
   var product = new Product(req.body);
-  if (err) {
-    res.render('products/new', {
-      title: 'New Product',
-      product: product,
-      errors: err.errors
-    });
-  }
-  product.save(function(err){
+  
+  product.uploadImageAndSave(req.files.image, function(err) {
     if (err) {
       res.render('products/new', {
         title: 'New Product',
@@ -43,18 +35,49 @@ exports.create = function(req, res) {
   });
 };
 
-exports.show = function(req, res){
-  var product = req.product;
+exports.show = function(req, res) {
   res.render('products/show', {
-    title: product.name,
-    product: product
+    title: req.product.name,
+    product: req.product,
+    user: req.user
   });
 };
+
+exports.edit = function(req, res) {
+  res.render('products/edit', {
+    title: 'Edit ' + req.product.name,
+    product: req.product
+  });
+};
+
+exports.update = function(req, res) {
+  var product = req.product;
+  product = _.extend(product, req.body);
   
-exports.index = function(req, res, options){
-  Product.list(options, function(err, products){
+  product.uploadImageAndSave(req.files.image, function(err) {
+    if (err) {
+      res.render('products/edit', {
+        title: 'Edit ' + req.product.name,
+        product: req.product,
+        error: err.errors
+      });
+    } else {
+      res.redirect('/products/'+product.id);
+    }
+  }); 
+};
+
+exports.destroy = function(req, res) {
+  var product = req.product;
+  product.active = false;
+  product.save();
+  res.redirect('/products');
+};
+  
+exports.index = function(req, res, options) {
+  Product.list(options, function(err, products) {
     if (err) return res.render('500');
-    Product.count().exec(function(err, count){
+    Product.count().exec(function(err, count) {
       res.render('products/index', {
         title: 'Brendan Kendrick | Software Developer',
         products: products

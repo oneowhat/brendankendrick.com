@@ -5,7 +5,13 @@ module.exports = {
     app: {
       name: "brendankendrick.com dev" 
     },
-    db: "mongodb://localhost/bk_dev"
+    db: "mongodb://localhost/bk_dev",
+    s3: {
+      key: 'AKIAJFIE7JRCOR4DMLPQ',
+      secret: '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',
+      bucket: 'brendankendricldotcom',
+      region: 'us-west-1'
+    }
   },
   test: {
     app: {
