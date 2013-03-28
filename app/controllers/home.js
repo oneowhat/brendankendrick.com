@@ -1,5 +1,14 @@
+var mongoose = require('mongoose')
+  , Product = mongoose.model('Product')
+
 exports.index = function(req, res) {
-  res.render('index', {
-    title: 'Brendan Kendrick | Software Developer'
+  Product.list({}, function(err, products) {
+    if (err) return res.render('500');
+    Product.count().exec(function(err, count) {
+      res.render('index', {
+        title: 'Brendan Kendrick | Software Developer',
+        products: products.length > 0
+      });
+    });
   });
 };

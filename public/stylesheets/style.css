@@ -1,16 +1,15 @@
 
-body { 
-  background: url(../images/bkg.jpg) repeat scroll 0 0 #fff;
-  color: #333; 
+body {
+  color: #333;
   margin: 0 auto;
 }
 
 body, p, ol, td {
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 100%;
-	max-width: 100%;
-	vertical-align: baseline;   
-	outline: 0 none;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 100%;
+  max-width: 100%;
+  vertical-align: baseline;
+  outline: 0 none;
   padding: 0;
 }
 
@@ -18,9 +17,9 @@ ul {
 }
 
 pre {
-	background-color: #eee;
-	padding: 10px;
-	font-size: 11px;
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
 }
 
 a {
@@ -30,8 +29,11 @@ a {
 a:visited { color: #719602; }
 a:hover { color: #336600; text-decoration: none; }
 
+textarea{
+  width: 650px;
+}
+
 #container{
-  background: url(../images/bkgfade.jpg) no-repeat scroll center top transparent;
   height: 100%;
   padding: 35px 0 0;
   line-height: 18px;
@@ -56,8 +58,8 @@ a:hover { color: #336600; text-decoration: none; }
   padding: 10px 0;
 }
 
-#site-tabs a { 
-  background: none repeat scroll 0 0 rgba(0,0,0,0.2);
+#site-tabs a {
+  background: none repeat scroll 0 0 rgba(0,0,0,0.4);
   color: rgba(255, 255, 255, 0.75);
   float: left;
   font-size: .6em;
@@ -67,8 +69,12 @@ a:hover { color: #336600; text-decoration: none; }
   text-decoration: none;
 }
 
-#site-tabs .current a {
+#site-tabs a:hover {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+}
+
+#site-tabs .current a {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
 }
 
 #login {
@@ -77,12 +83,16 @@ a:hover { color: #336600; text-decoration: none; }
   min-height: 450px;
 }
 
-#page {    
+#page {
   background-color: #F5F5F1;
   margin-left: auto ;
   margin-right: auto ;
   max-width: 1000px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#page-pad {
+  padding: 1em;
 }
 
 #page h1{
@@ -94,7 +104,7 @@ a:hover { color: #336600; text-decoration: none; }
 }
 
 #page-right {
-  padding: 0 15px 0 15px;
+  padding: .2em 1em 0 1em;
 }
 
 .page-left {
@@ -109,16 +119,6 @@ a:hover { color: #336600; text-decoration: none; }
   width: 50%;
   min-height: 438px;
   min-width: 400px;
-}
-
-#mainfooter {
-	border-top: 1px solid gray;
-	color: gray;
-	text-align: center;
-	font-size: 10px;
-	background: white;
-	float: left;
-	width: 100%;
 }
 
 #logo {
@@ -140,6 +140,29 @@ a:hover { color: #336600; text-decoration: none; }
 
 #product-img{
   text-align: center;
+}
+
+#product-detail {
+  padding: 10px 0 0 10px;
+}
+
+#product-detail div.image {
+  width: 226px;
+  float: left;
+}
+
+#product-detail div.detail {
+  margin-left: 246px;
+}
+
+img.medium {
+  height: 200px;
+  width: 225px;
+}
+
+img.big {
+  height: 400px;
+  width: 450px;
 }
 
 #sections {
@@ -182,19 +205,20 @@ ul.section-list li {
 }
 
 #resume {
-  padding: 10px;
+  padding: .5em 2em 2em 2em;
 }
 
 #articles {
   width: 70%;
   float: left;
-  padding: 0 15px;
+  padding: 1em;
 }
 
 #side-bar {
+  border-left: 1px solid #D9D9D6;
   width: 30%;
   margin-left: 70%;
-  padding: 0 15px;
+  padding: 1em;
 }
 
 #footer {
@@ -202,6 +226,8 @@ ul.section-list li {
   margin-left: auto;
   margin-right: auto;
   font-size: .6em;
-  color: rgba(255, 255, 255, 0.75);
-  text-align: center;
+}
+
+.right {
+  float: right;
 }

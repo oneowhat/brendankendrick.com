@@ -13,7 +13,7 @@ block products
             li= error.type
             
     .form
-      h1 #{title}
+      h2 #{title}
       form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
         if (!product.isNew)
           input(type="hidden", name="_method", value="PUT")
@@ -32,6 +32,11 @@ block products
           label.control-label(for="description") Description
           .controls
             textarea#desc.input-xlarge(type="text", rows="5", name="description")=product.description
+        
+        .control-group
+          label.control-label(for="purchaseUrl") Etsy Url
+          .controls
+            input#name.input-xlarge(type="text", name="purchaseUrl", value=product.purchaseUrl)
         
         .control-group
           label.control-label(for="price") Price

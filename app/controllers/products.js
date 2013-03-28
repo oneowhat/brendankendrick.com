@@ -80,7 +80,8 @@ exports.index = function(req, res, options) {
     Product.count().exec(function(err, count) {
       res.render('products/index', {
         title: 'Brendan Kendrick | Software Developer',
-        products: products
+        products: products,
+        user: req.user
       });
     });
   });

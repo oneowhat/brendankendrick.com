@@ -1,0 +1,37 @@
+extends layout
+
+block articles
+  #page  
+    - var action = '/articles'
+    if (!article.isNew)
+      - action += '/' + article.id
+      
+    if (typeof errors !== 'undefined')
+      .err
+        ul
+          each error in errors
+            li= error.type
+  
+    .form
+      h2 #{title}
+      form.form-horizontal(method="post", action='create', enctype="multipart/form-data")
+      
+        .control-group
+          label.control-label(for="name") Title
+          .controls
+            input#name.input-xlarge(type="text", name="name", value=article.title) 
+            
+        .control-group
+          label.control-label(for='body') Article Body
+          .controls
+            input(type='file', name="body")
+            
+        .form-actions
+          button.btn.btn-primary(type='submit') Save
+          &nbsp;
+          
+          - var cancelAction = '/articles'
+          if (!article.isNew)
+            - cancelAction += '/' + article.id
+            
+          a.btn(href=cancelAction, title="cancel") Cancel

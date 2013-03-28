@@ -1,10 +1,20 @@
 var mongoose = require('mongoose')
-  , async = require('async');
+  , Article = mongoose.model('Article')
+  , async = require('async')
+  , _ = require('underscore');
+  
+exports.new = function(req, res) {
+  res.render('articles/new', {
+    title: 'New Article',
+    article: new Article()
+  });
+};
   
 exports.index = function(req, res, options){
   res.render('articles/index', {
     title: 'Brendan Kendrick | Software Developer',
-    message: 'Check back soon for updates on my aduino/node project'
+    message: 'Check back soon for updates on my aduino/node project',
+    user: req.user
   });
   
   /*

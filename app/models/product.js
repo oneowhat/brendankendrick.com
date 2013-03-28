@@ -9,6 +9,7 @@ var Product = new Schema({
   description: { type: String, default: '', trim: true },
   price: { type: Number, min: 0 },
   image: { type: String },
+  purchaseUrl: { type: String, default: '', trim: true },
   createdAt: { type: Date, default: Date.now },
   active: { type: Boolean, default: true }
 });
@@ -20,6 +21,10 @@ Product.path('name').validate(function (name) {
 Product.path('description').validate(function (description) {
   return description.length > 0;
 }, 'Description cannot be blank');
+
+Product.path('image').validate(function (image) {
+  return image.length > 0;
+}, 'You must upload an image');
 
 Product.path('price').validate(function (price) {
   return price > 0;

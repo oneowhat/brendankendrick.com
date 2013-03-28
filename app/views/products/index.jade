@@ -5,25 +5,39 @@ block content
   #site-tabs
     ul
       li.current
-        a(href="#") brendankendrick.com
+        a(href="/") brendankendrick.com
       li 
         a(href="resume") resume
       li
         a(href="articles") blog
-  #page
+  #page   
+    #page-pad   
+      | Proceeds from the sale of these shirts goes to 
+      a(href="") CodeNow
     - var oddEven = 2
     each product in products
       if (oddEven % 2 === 0)
         .page-left
-          #product-img
-            a(href="products/" + product.id) #{product.name}
-              img(src=product.image)
+          #product-detail
+            .image
+              a(href="products/" + product.id)
+                img.medium(src=product.image)
+            .detail
+              a(href="products/" + product.id) #{product.name}
+              p #{product.description}
       else
         .page-right
-          #product-img
-            a(href="products/" + product.id) #{product.name}
-              img(src=product.image)
+          #product-detail
+            .image
+              a(href="products/" + product.id)
+                img.medium(src=product.image)
+            .detail
+              a(href="products/" + product.id) #{product.name}
+              p #{product.description}
+              
       - oddEven += 1
+    if user
+      a(href="products/new") New
         
           
       

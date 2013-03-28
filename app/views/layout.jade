@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='http://code.jquery.com/jquery-1.9.1.min.js')
     script(src='/javascripts/navigation.js')
-  body
+  body      
     #container            
       block content
   
@@ -16,3 +16,5 @@ html
         #{ new Date().getFullYear() }
         &nbsp;
         | Brendan Kendrick-Walton 
+        span.right
+          | Powered by heroku/node/express

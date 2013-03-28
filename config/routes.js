@@ -17,6 +17,8 @@ module.exports = function(app, passport, auth) {
 
   var articles = require('../app/controllers/articles');
   app.get('/articles', articles.index);
+  app.get('/articles/new', auth.requiresLogin, articles.new);
+  app.post('/articles', auth.requiresLogin, articles.create);
   
   var products = require('../app/controllers/products');
   app.get('/products', products.index);

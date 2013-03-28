@@ -15,14 +15,16 @@ block content
       #logo
         span.name Brendan Kendrick
         &nbsp
-        span.nouns | Web Developer, Programmer
+        span.nouns | Web Developer & Programmer
     #page-right.page-right
       #sections
         .section
           .col30
             | ABOUT ME
           .col70
-            | I am a Software Developer in San Francisco, CA. I am thrilled by the ever-changing technology landscape.
+            | I am a Software Developer in San Francisco, CA. 
+            | I like building web applications and hacking hardware, 
+            | I play pool, I take a lot of pictures.
             p 
               a(href='mailto:brendan@brendankendrick.com') brendan@brendankendrick.com
             
@@ -47,14 +49,15 @@ block content
             | PROJECTS
           .col70
             a(href='http://www.studio253finishes.com') Studio 253 Finishes
-            
-        .section
-          .col30
-            &nbsp;
-          .col70
-            | Check out my 
-            &nbsp;
-            a(href="products") t-shirts!
+        
+        if products
+          .section
+            .col30
+              &nbsp;
+            .col70
+              | Check out my 
+              &nbsp;
+              a(href="products") t-shirts!
             
           
         

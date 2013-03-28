@@ -7,22 +7,21 @@ block content
       li.current
         a(href="/") brendankendrick.com
       li
-        a(href="resume") resume
+        a(href="/resume") resume
       li
-        a(href="articles") blog
+        a(href="/articles") blog
   #page 
     #page-left.page-left
       #product-img
-        img(src=product.image)
+        img.big(src=product.image)
     #page-right.page-right
       | $#{product.price} #{product.name}
       br
-      br
-      | #{product.description}
-      &nbsp;
       if (user)
         a(href=''+product.id+'/edit') Edit
       #sections
+        .section
+          | #{product.description}
         .section
           .col30
             a.btn.btn-primary(href='http://www.etsy.com', target='_blank') Buy this on Etsy

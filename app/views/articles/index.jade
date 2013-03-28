@@ -11,6 +11,8 @@ block content
         a(href="articles") blog
   #page
     #articles
+      if user
+        a(href='/articles/new') New
       | #{message}
     #side-bar
       | side bar stuff
