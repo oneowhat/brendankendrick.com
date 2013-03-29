@@ -5,7 +5,8 @@ var express = require('express')
   , fs = require('fs')
   , http = require('http')
   , path = require('path')
-  , passport = require('passport');
+  , passport = require('passport')
+  , helpers = require('view-helpers');
   
 var env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
@@ -28,6 +29,7 @@ app.configure(function(){
   app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
   
+  app.use(helpers(config.app.name));
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.cookieParser())
@@ -56,6 +58,11 @@ app.configure(function(){
     level: 9
   }));
   app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use(function(req, res, next){
+    res.locals.moment = require('moment');
+    next();
+  });
 });
 
 app.configure('development', function(){

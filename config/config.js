@@ -6,10 +6,10 @@ module.exports = {
     },
     db: "mongodb://localhost/bk_dev",
     s3: {
-      key: '',
-      secret: '',
-      bucket: '',
-      region: ''
+      key: 'AKIAJFIE7JRCOR4DMLPQ',
+      secret: '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',
+      bucket: 'brendankendricldotcom',
+      region: 'us-west-1'
     }
   },
   test: {

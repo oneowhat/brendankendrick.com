@@ -14,6 +14,7 @@ var setTags = function(tags) {
   
 var Article = new Schema({
   title: { type: String, default: '', trim: true },
+  user: { type: Schema.ObjectId, ref: 'User' },
   content: { type: String },
   tags: { type: [], get: getTags, set: setTags },
   createdAt: { type: Date, default: Date.now },
@@ -45,14 +46,16 @@ Article.methods = {
 };
 
 Article.statics = {
-  load: function (id, cb) {
-    this.findOne({ _id : id }).exec(cb)
+  load: function (title, cb) {
+    title = title.replace(/-/g, " ");
+    this.findOne({ title: title }).populate('user', 'name').exec(cb)
   },
 
   list: function (options, cb) {
     var criteria = options.criteria || {};
 
     this.find(criteria)
+      .populate('user', 'name')
       .sort({'createdAt': -1}) // sort by date
       .limit(options.perPage)
       .skip(options.perPage * options.page)

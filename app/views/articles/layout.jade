@@ -7,10 +7,15 @@ block content
         a(href="/") brendankendrick.com
       li
         a(href="/resume") resume
-      li
-        a(href="/articles") blog
       li.current
-        a(href="/articles") articles
-      li
-        a(href="/products") products
-  block articles
+        a(href="/articles") blog
+      if user
+        li
+          a(href="/products") products
+  #articles.col70.left
+    .page-pad
+      block articles
+  
+  #side-bar.col30.right 
+    .page-pad
+      | side bar stuff

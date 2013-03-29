@@ -1,27 +1,16 @@
-extends ../layout
+extends layout
 
-block content
+block products
 
-  #site-tabs
-    ul
-      li.current
-        a(href="/") brendankendrick.com
-      li
-        a(href="/resume") resume
-      li
-        a(href="/articles") blog
-  #page 
-    #page-left.page-left
-      #product-img
-        img.big(src=product.image)
-    #page-right.page-right
-      | $#{product.price} #{product.name}
-      br
-      if (user)
-        a(href=''+product.id+'/edit') Edit
-      #sections
-        .section
-          | #{product.description}
-        .section
-          .col30
-            a.btn.btn-primary(href='http://www.etsy.com', target='_blank') Buy this on Etsy
+  .col50.left.product-img
+    img.medium(src=product.image)
+  .col50.right
+    | $#{product.price} #{product.name}
+    br
+    if (user)
+      a(href=''+product.id+'/edit') Edit
+    .sections
+      .section
+        | #{product.description}
+      .section
+        a.btn.btn-primary(href='http://www.etsy.com', target='_blank') Buy this on Etsy

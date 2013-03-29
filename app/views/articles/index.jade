@@ -1,18 +1,11 @@
-extends ../layout
+extends layout
 
-block content
-  #site-tabs
-    ul
-      li
-        a(href="/") brendankendrick.com
-      li
-        a(href="#") resume
-      li.current
-        a(href="articles") blog
-  #page
-    #articles
-      if user
-        a(href='/articles/new') New
-      | #{message}
-    #side-bar
-      | side bar stuff
+block articles
+
+  if user
+    a(href='/articles/new') New
+    
+  each article in articles
+    include article
+      
+  script(src='/javascripts/article.js')

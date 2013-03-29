@@ -1,17 +1,16 @@
 extends layout
 
 block products
-  #page    
-    - var action = '/products'
-    if (!product.isNew)
-      - action += '/' + product.id
-      
-    if (typeof errors !== 'undefined')
-      .err
-        ul
-          each error in errors
-            li= error.type
-            
+  - var action = '/products'
+  if (!product.isNew)
+    - action += '/' + product.id
+    
+  if (typeof errors !== 'undefined')
+    .err
+      ul
+        each error in errors
+          li= error.type
+  .page-pad   
     .form
       h2 #{title}
       form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
@@ -52,4 +51,4 @@ block products
             - cancelAction += '/' + product.id
             
           a.btn(href=cancelAction, title="cancel") Cancel
-            
+              

@@ -15,7 +15,8 @@ exports.product = function(req, res, next, productId){
 exports.new = function(req, res){
   res.render('products/new', {
     title: 'New Product',
-    product: new Product({})
+    product: new Product({}),
+    user: req.user
   });
 };
 
@@ -27,6 +28,7 @@ exports.create = function(req, res) {
       res.render('products/new', {
         title: 'New Product',
         product: product,
+        user: req.user,
         errors: err.errors
       });
     } else {
@@ -46,7 +48,8 @@ exports.show = function(req, res) {
 exports.edit = function(req, res) {
   res.render('products/edit', {
     title: 'Edit ' + req.product.name,
-    product: req.product
+    product: req.product,
+    user: req.user
   });
 };
 
@@ -59,7 +62,8 @@ exports.update = function(req, res) {
       res.render('products/edit', {
         title: 'Edit ' + req.product.name,
         product: req.product,
-        error: err.errors
+        error: err.errors,
+        user: req.user
       });
     } else {
       res.redirect('/products/'+product.id);

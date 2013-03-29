@@ -1,0 +1,9 @@
+extends layout
+
+block articles
+  if user
+    a(href='/articles/' + article.title.replace(/ /g, "-") + '/edit') Edit
+  
+  include article
+  
+  script(src='/javascripts/article.js')

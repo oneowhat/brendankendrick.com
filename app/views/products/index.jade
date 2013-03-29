@@ -1,43 +1,33 @@
-extends ../layout
+extends layout
 
-block content
-  
-  #site-tabs
-    ul
-      li.current
-        a(href="/") brendankendrick.com
-      li 
-        a(href="resume") resume
-      li
-        a(href="articles") blog
-  #page   
-    #page-pad   
-      | Proceeds from the sale of these shirts goes to 
-      a(href="") CodeNow
-    - var oddEven = 2
-    each product in products
-      if (oddEven % 2 === 0)
-        .page-left
-          #product-detail
-            .image
-              a(href="products/" + product.id)
-                img.medium(src=product.image)
-            .detail
-              a(href="products/" + product.id) #{product.name}
-              p #{product.description}
-      else
-        .page-right
-          #product-detail
-            .image
-              a(href="products/" + product.id)
-                img.medium(src=product.image)
-            .detail
-              a(href="products/" + product.id) #{product.name}
-              p #{product.description}
-              
-      - oddEven += 1
-    if user
+block products
+  p
+    | Proceeds from the sale of these shirts goes to 
+    a(href="") CodeNow
+  if user
+    p
       a(href="products/new") New
+      
+  each product in products
+    .col100.left
+      .product-detail
+        .image.left
+          a(href="products/" + product.id)
+            img.medium(src=product.image)
+        .detail
+          | $#{product.price} #{product.name}
+          br
+          if (user)
+            a(href=''+product.id+'/edit') Edit
+          .sections
+            .section
+              | #{product.description}
+            .section
+              a.btn.btn-primary(href='http://www.etsy.com', target='_blank') Buy this on Etsy
+    .col70
+      &nbsp;
+      
+    
         
           
       

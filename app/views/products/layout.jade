@@ -9,8 +9,15 @@ block content
         a(href="/resume") resume
       li
         a(href="/articles") blog
-      li
-        a(href="/articles") articles
-      li.current
-        a(href="/products") products
-  block products
+      if user
+        li.current
+          a(href="/products") products
+  
+  #page
+    #products.col70.left
+      .page-pad
+        block products
+      
+    #side-bar.col30.right 
+      .page-pad
+        | side bar stuff

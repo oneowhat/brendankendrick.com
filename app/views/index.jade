@@ -11,54 +11,55 @@ block content
       li
         a(href="articles") blog
   #page
-    #page-left.page-left
+    #logo-pane.col50.left
       #logo
         span.name Brendan Kendrick
         &nbsp
         span.nouns | Web Developer & Programmer
-    #page-right.page-right
-      #sections
-        .section
-          .col30
-            | ABOUT ME
-          .col70
-            | I am a Software Developer in San Francisco, CA. 
-            | I like building web applications and hacking hardware, 
-            | I play pool, I take a lot of pictures.
-            p 
-              a(href='mailto:brendan@brendankendrick.com') brendan@brendankendrick.com
-            
-        .section
-          .col30
-            | ELSEWHERE
-          .col70
-            ul.section-list
-              li
-                a(href='http://www.linkedin.com/in/brendankendrick/') LinkedIn
-              li
-                a(href='https://github.com/oneowhat') GitHub
-              li 
-                a(href='http://www.flickr.com/people/cameramedusa/') Flickr
-              li
-                a(href='https://twitter.com/butterbaste', title='@butterbaste') Twitter 
-              li
-                a(href='http://nomadpool.com/users/219', title='Play pool on a real table against real people') Nomad
-            
-        .section
-          .col30
-            | PROJECTS
-          .col70
-            a(href='http://www.studio253finishes.com') Studio 253 Finishes
-        
-        if products
+    #about-me.col50.right
+      .page-pad
+        .sections
           .section
-            .col30
-              &nbsp;
-            .col70
-              | Check out my 
-              &nbsp;
-              a(href="products") t-shirts!
-            
+            .col30.left
+              | ABOUT ME
+            .col70.left
+              | I am a Software Developer in San Francisco, CA. 
+              | I like building web applications and hacking hardware, 
+              | I play pool, I take a lot of pictures.
+              p 
+                a(href='mailto:brendan@brendankendrick.com') brendan@brendankendrick.com
+              
+          .section
+            .col30.left
+              | ELSEWHERE
+            .col70.left
+              ul.section-list
+                li
+                  a(href='http://www.linkedin.com/in/brendankendrick/') LinkedIn
+                li
+                  a(href='https://github.com/oneowhat') GitHub
+                li 
+                  a(href='http://www.flickr.com/people/cameramedusa/') Flickr
+                li
+                  a(href='https://twitter.com/butterbaste', title='@butterbaste') Twitter 
+                li
+                  a(href='http://nomadpool.com/users/219', title='Play pool on a real table against real people') Nomad
+              
+          .section
+            .col30.left
+              | PROJECTS
+            .col70.left
+              a(href='http://www.studio253finishes.com') Studio 253 Finishes
+          
+          if products
+            .section
+              .col30.left
+                &nbsp;
+              .col70.left
+                | Check out my 
+                &nbsp;
+                a(href="products") t-shirts!
+              
           
         
 
