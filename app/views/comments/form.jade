@@ -1,0 +1,23 @@
+form.form-vertical(method="post", action="/articles/#{article._id}/comments")
+
+  .control-group
+    label.control-label(for="name") Name
+    .controls
+      input#name.input-xlarge(type="text", name="name") 
+
+  .control-group
+    label.control-label(for="email") Email Address
+    .controls
+      input#email.input-xlarge(type="text", name="email") 
+
+  .control-group
+    label.control-label(for="url") URL
+    .controls
+      input#url.input-xlarge(type="text", name="url") 
+      
+  .control-group
+    label.control-label(for="Body") Comments (Please not trolling or other funny business, criticism welcome)
+    .controls
+      textarea#body.input-xxlarge(type='text', rows="6", name="body", placeholder='Add your comment')
+      
+  button.btn.btn-primary(type='button', id="btnComment") Submit

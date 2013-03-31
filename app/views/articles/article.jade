@@ -1,17 +1,18 @@
 
 if (article)
-  a(href='/articles/' + article.title)
+  .article
+    a(href='/articles/' + article.title.replace(/ /g, "-"))
       h2 #{article.title}
-      
-    span 
-      | by #{article.user.name} on #{formatDate(article.createdAt)} 
+        
+    span.small
+      | posted #{formatDate(article.createdAt)} 
     if article.tags.length  
-      span.right
+      span.small.right
         | tags: 
         each tag in article.tags.split(',')
           a(href="/tags/" + tag) 
             span
               | #{tag}
-    .article(class="#{article.id}")
+    .article-content(class="#{article.id}")
       div(id=article.id)
       input.content(type="hidden", name=article.id, value=article.content)

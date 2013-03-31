@@ -10,6 +10,8 @@ exports.authCallback = function(req, res, next) {
 exports.login = function(req, res) {
   res.render('users/login', {
     title: 'Login',
+    nav: '',
+    user: req.user,
     message: req.flash('error')
   });
 };

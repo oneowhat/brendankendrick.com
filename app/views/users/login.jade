@@ -1,20 +1,8 @@
 extends ../layout
 
 block content
-  #site-tabs
-    ul
-      li
-        a(href="/") brendankendrick.com
-      li
-        a(href="resume") resume
-      li
-        a(href="articles") blog
-      li.current
-        a(href="#") articles
-      li
-        a(href="products") products
   #page
-    #login
+    #login.page-pad
       form.login.form-horizontal(action="/users/session", method="post")
         p.error= message
         .control-group

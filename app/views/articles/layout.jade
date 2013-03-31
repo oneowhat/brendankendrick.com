@@ -1,17 +1,6 @@
 extends ../layout
 
 block content
-  #site-tabs
-    ul
-      li
-        a(href="/") brendankendrick.com
-      li
-        a(href="/resume") resume
-      li.current
-        a(href="/articles") blog
-      if user
-        li
-          a(href="/products") products
   #articles.col70.left
     .page-pad
       block articles

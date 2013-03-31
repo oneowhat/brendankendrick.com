@@ -15,6 +15,7 @@ exports.product = function(req, res, next, productId){
 exports.new = function(req, res){
   res.render('products/new', {
     title: 'New Product',
+    nav: 'nav-products',
     product: new Product({}),
     user: req.user
   });
@@ -27,6 +28,7 @@ exports.create = function(req, res) {
     if (err) {
       res.render('products/new', {
         title: 'New Product',
+        nav: 'nav-products',
         product: product,
         user: req.user,
         errors: err.errors
@@ -40,6 +42,7 @@ exports.create = function(req, res) {
 exports.show = function(req, res) {
   res.render('products/show', {
     title: req.product.name,
+    nav: 'nav-products',
     product: req.product,
     user: req.user
   });
@@ -48,6 +51,7 @@ exports.show = function(req, res) {
 exports.edit = function(req, res) {
   res.render('products/edit', {
     title: 'Edit ' + req.product.name,
+    nav: 'nav-products',
     product: req.product,
     user: req.user
   });
@@ -61,6 +65,7 @@ exports.update = function(req, res) {
     if (err) {
       res.render('products/edit', {
         title: 'Edit ' + req.product.name,
+        nav: 'nav-products',
         product: req.product,
         error: err.errors,
         user: req.user
@@ -83,7 +88,8 @@ exports.index = function(req, res, options) {
     if (err) return res.render('500');
     Product.count().exec(function(err, count) {
       res.render('products/index', {
-        title: 'Brendan Kendrick | Software Developer',
+        title: 'Brendan Kendrick | T-shirts',
+        nav: 'nav-products',
         products: products,
         user: req.user
       });

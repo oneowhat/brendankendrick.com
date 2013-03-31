@@ -4,17 +4,32 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/default.css')
     script(src='http://code.jquery.com/jquery-1.9.1.min.js')
-    script(src='/javascripts/navigation.js')
   body      
-    #container           
+    #container  
+    
+      block navigation         
+        input(id="hdnNav", type="hidden", value=nav)
+        #site-tabs
+          ul
+            li.nav-home
+              a(href="/") brendankendrick.com
+            li.nav-resume
+              a(href="/resume") resume
+            li.nav-articles
+              a(href="/articles") blog
+            if user
+              li.nav-products
+                a(href="/products") products
+          #user-details.right
+            if (user)
+              | logged in as #{user.email} 
+              a(href="/logout") logout
       block content
   
       #footer
         | Copyright 
         &copy;
-        &nbsp;
-        #{ new Date().getFullYear() }
-        &nbsp;
+        | #{(new Date().getFullYear())}
         | Brendan Kendrick-Walton 
-        span.right
-          | Powered by heroku/node/express
+  
+    script(src='/javascripts/navigation.js')

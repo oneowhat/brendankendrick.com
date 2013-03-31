@@ -16,6 +16,7 @@ exports.article = function(req, res, next, title){
 exports.new = function(req, res) {
   res.render('articles/new', {
     title: 'New Article',
+    nav: 'nav-articles',
     article: new Article(),
     user: req.user
   });
@@ -24,10 +25,12 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
   var article = new Article(req.body);
   article.user = req.user;
+  
   article.uploadContentAndSave(req.files.content, function(err) {
     if (err) {
       res.render('articles/new', {
         title: 'New Article',
+        nav: 'nav-articles',
         article: article,
         errors: err.errors
       });
@@ -42,6 +45,7 @@ exports.show = function(req, res) {
   // TODO: cache article pages
   res.render('articles/show', {
     title: req.article.title,
+    nav: 'nav-articles',
     article: req.article,
     user: req.user
   }); 
@@ -50,17 +54,45 @@ exports.show = function(req, res) {
 exports.edit = function(req, res) {
   res.render('articles/edit', {
     title: req.article.title,
+    nav: 'nav-articles',
     article: req.article,
     user: req.user
   });
 };
+
+exports.update = function(req, res) {
+  var article = req.article;
+  article = _.extend(article, req.body);  
   
-exports.index = function(req, res, options){  
+  article.uploadContentAndSave(req.files.content, function(err) {
+    if (err) {
+      res.render('articles/edit', {
+        title: 'Edit Article',
+        nav: 'nav-articles',
+        article: article,
+        errors: err.errors
+      });
+    } else {
+      var titleParam = article.title.replace(/ /g, "-");
+      res.redirect('/articles/' + titleParam);
+    }
+  });
+};
+  
+exports.index = function(req, res, options){ 
+  var page = req.param('page') > 0 ? req.param('page') : 0;
+  var perPage = 5;
+  var options = {
+    perPage: perPage,
+    page: page
+  };
+ 
   Article.list(options, function(err, articles){
     if (err) return res.render('500');
     Article.count().exec(function(err, count){
       res.render('articles/index', {
-        title: 'Brendan Kendrick | Software Developer',
+        title: 'Brendan Kendrick | Articles',
+        nav: 'nav-articles',
         articles: articles,
         user: req.user
       });

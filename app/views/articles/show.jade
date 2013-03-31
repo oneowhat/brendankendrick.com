@@ -6,4 +6,16 @@ block articles
   
   include article
   
+  #comments
+    if (article.comments.length)
+      h4 #{article.comments.length} Comments
+      each comment in article.comments
+        include ../comments/comment
+  #comment-form
+    h4 Leave a Comment
+    .page-pad
+      include ../comments/form
+    
+  
   script(src='/javascripts/article.js')
+  script(src='/javascripts/comment.js')

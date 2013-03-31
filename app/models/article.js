@@ -18,6 +18,13 @@ var Article = new Schema({
   content: { type: String },
   tags: { type: [], get: getTags, set: setTags },
   createdAt: { type: Date, default: Date.now },
+  comments: [{
+    name: { type: String, default: 'Anonymous', trim: true },
+    email: { type: String, default: '', trim: true },
+    url: { type: String, default: '', trim: true },
+    body: { type: String, default: '' },
+    createdAt: { type : Date, default : Date.now }
+  }],
   active: { type: Boolean, default: true }
 });
 

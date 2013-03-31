@@ -8,7 +8,8 @@ module.exports = function(app, passport, auth) {
   app.get('/', home.index);
 
   var users = require('../app/controllers/users');
-  app.get('/users/login', users.login);
+  app.get('/login', users.login);
+  app.get('/logout', users.logout);
   app.post('/users/session', passport.authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid email or password.'}), users.session);
   app.post('/users/create', auth.requiresLogin, users.create);
 
@@ -21,6 +22,9 @@ module.exports = function(app, passport, auth) {
   app.post('/articles', auth.requiresLogin, articles.create);
   app.get('/articles/:title', articles.show);
   app.get('/articles/:title/edit', auth.requiresLogin, articles.edit);
+  
+  var comments = require('../app/controllers/comments');
+  app.post('/articles/:title/comments', comments.create);
   
   var products = require('../app/controllers/products');
   app.get('/products', products.index);

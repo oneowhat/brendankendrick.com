@@ -58,11 +58,6 @@ app.configure(function(){
     level: 9
   }));
   app.use(express.static(path.join(__dirname, 'public')));
-  
-  app.use(function(req, res, next){
-    res.locals.moment = require('moment');
-    next();
-  });
 });
 
 app.configure('development', function(){
