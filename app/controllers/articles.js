@@ -94,7 +94,9 @@ exports.index = function(req, res, options){
         title: 'Brendan Kendrick | Articles',
         nav: 'nav-articles',
         articles: articles,
-        user: req.user
+        user: req.user,
+        page: page,
+        pages: count / perPage
       });
     });
   }); 

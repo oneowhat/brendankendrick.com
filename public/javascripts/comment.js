@@ -1,30 +1,34 @@
 
 $(document).ready(function(){
 
-  $("#btnComment").click(function(){
-    
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var url = $("#url").val();
-    var body = $("#body").val();
-    
-    $.ajax({ 
-      url: window.location.pathname + '/comments',
-      type: 'POST',
-      cache: false, 
-      data: { 
-        name: name,
-        email: email,
-        url: url,
-        body: body
-      }, 
-      success: function(data){
-        alert('Success!')
-      }, 
-      error: function(jqXHR, textStatus, err){
-         alert('text status '+textStatus+', err '+err)
-      }
-    });
-  }); 
-  
+  $("#btnComment").click(function(){  
+    if ($("#body").val()){  
+      $.ajax({ 
+        url: window.location.pathname + '/comments',
+        type: 'POST',
+        cache: false, 
+        data: { 
+          name: $("#name").val(),
+          email: $("#email").val(),
+          url: $("#url").val(),
+          body: $("#body").val()
+        }, 
+        success: function(data){
+          if (data) appendNewComment(data);
+        }, 
+        error: function(jqXHR, textStatus, err){
+          alert('text status '+textStatus+', err '+err)
+        }
+      });
+    }
+  });
 });
+
+function appendNewComment(data) {
+  $('#comments').append(data);
+  $("#name").val('');
+  $("#email").val('');
+  $("#url").val('');
+  $("#body").val('');
+  $('.hidden').fadeIn('slow');
+}

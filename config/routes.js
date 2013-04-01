@@ -24,7 +24,10 @@ module.exports = function(app, passport, auth) {
   app.get('/articles/:title/edit', auth.requiresLogin, articles.edit);
   
   var comments = require('../app/controllers/comments');
-  app.post('/articles/:title/comments', comments.create);
+  app.post('/articles/:title/comments', comments.create);  
+  
+  var tags = require('../app/controllers/tags');
+  app.get('/tags/:tag', tags.index);
   
   var products = require('../app/controllers/products');
   app.get('/products', products.index);

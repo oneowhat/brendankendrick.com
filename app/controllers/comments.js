@@ -1,20 +1,38 @@
 
+var helpers = require('view-helpers')
+  , sanitize = require('validator').sanitize;
+
 exports.create = function (req, res) {
   var article = req.article;
   var titleParam = article.title.replace(/ /g, "-");
+  var name = 'Anonymous';
   
-  if (!req.body.body) return res.redirect('/articles/'+ titleParam);
+  if (req.body.name.length > 0) {
+    name = req.body.name;
+  }
+  
+  if (!req.body.body) return res.send('');
+  
+  var body = sanitize(req.body.body).xss();
 
   article.comments.push({
-    name: req.body.name,
+    name: name,
     email: req.body.email,
     url: req.body.url,
-    body: req.body.body
+    body: body
   });
 
   article.save(function (err) {
-    // TODO: render comments as result.
     if (err) return res.render('500');
-    res.redirect('/articles/' + titleParam);
+    var commentDiv = '<div class="comment hidden">';
+    commentDiv += '<span class="name">';
+    commentDiv += name;
+    commentDiv += '</span> wrote:';
+    commentDiv += '<div class="page-pad"><p>';
+    commentDiv += sanitize(body).escape();
+    commentDiv += '</p></div> on '
+    commentDiv += res.locals.formatDateTime(req.article.comments[req.article.comments.length - 1].createdAt);
+    commentDiv += '</div>';
+    res.send(commentDiv);
   });
 };

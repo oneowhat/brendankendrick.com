@@ -1,0 +1,10 @@
+
+if (comment)
+  .comment
+    span.name #{comment.name}
+    &nbsp;
+    | wrote:
+    .page-pad
+      p
+        | #{comment.body}
+    | on #{formatDateTime(comment.createdAt)}

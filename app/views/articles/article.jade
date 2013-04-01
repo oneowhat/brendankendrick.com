@@ -1,7 +1,8 @@
 
 if (article)
+  - var articleURL = '/articles/' + article.title.replace(/ /g, "-")
   .article
-    a(href='/articles/' + article.title.replace(/ /g, "-"))
+    a(href=articleURL)
       h2 #{article.title}
         
     span.small
@@ -16,3 +17,7 @@ if (article)
     .article-content(class="#{article.id}")
       div(id=article.id)
       input.content(type="hidden", name=article.id, value=article.content)
+    
+    #comments
+      if (article.comments.length)
+        a(href=articleURL + '#comments') Comments (#{article.comments.length})
