@@ -6,6 +6,7 @@ block articles
     a(href='/articles/new') New
     
   each article in articles
-    include article
-      
-  script(src='/javascripts/article.js')
+    .article
+      include article
+      if (article.comments.length)
+        a(href=articleURL + '#comments') Comments (#{article.comments.length})

@@ -42,7 +42,6 @@ exports.create = function(req, res) {
 };
 
 exports.show = function(req, res) {
-  // TODO: cache article pages
   res.render('articles/show', {
     title: req.article.title,
     nav: 'nav-articles',

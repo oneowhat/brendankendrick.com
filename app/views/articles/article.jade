@@ -1,23 +1,17 @@
 
 if (article)
   - var articleURL = '/articles/' + article.title.replace(/ /g, "-")
-  .article
-    a(href=articleURL)
-      h2 #{article.title}
-        
-    span.small
-      | posted #{formatDate(article.createdAt)} 
-    if article.tags.length  
-      span.small.right
-        | tags: 
-        each tag in article.tags.split(',')
-          a(href="/tags/" + tag) 
-            span
-              | #{tag}
-    .article-content(class="#{article.id}")
-      div(id=article.id)
-      input.content(type="hidden", name=article.id, value=article.content)
-    
-    #comments
-      if (article.comments.length)
-        a(href=articleURL + '#comments') Comments (#{article.comments.length})
+  a(href=articleURL)
+    h2 #{article.title}
+      
+  span.small
+    | posted #{formatDate(article.createdAt)} 
+  if article.tags.length  
+    span.small.right
+      | tags: 
+      each tag in article.tags.split(',')
+        a(href="/tags/" + tag) 
+          span
+            | #{tag}
+            
+  .article-content!= article.content

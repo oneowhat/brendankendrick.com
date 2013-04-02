@@ -1,7 +1,9 @@
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , env = process.env.NODE_ENV || 'development'
-  , config = require('../../config/config')[env]  
+  , config = require('../../config/config')[env]
+  , fs = require('fs')
+  , https = require('https')
   , knox = require('knox');
   
 var getTags = function(tags) {
@@ -39,14 +41,9 @@ Article.path('content').validate(function (content) {
 Article.methods = {
   uploadContentAndSave: function(file, cb) {
     var self = this;
-    var knoxClient = knox.createClient(config.s3);
-    var s3Headers = {
-      'Content-Type': file.type,
-      'x-amz-acl': 'public-read'
-    };
-    knoxClient.putFile(file.path, file.name, s3Headers, function(err, s3Response){
+    fs.readFile(file.path, function (err, data) {
       if (err) return cb(err);
-      self.content = knoxClient.https('/'+file.name);
+      self.content = data.toString();
       self.save(cb);
     });
   }
