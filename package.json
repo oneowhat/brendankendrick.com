@@ -6,7 +6,7 @@
   "author": "Brendan Kendrick-Walton <brendan@brendankendrick.com> (https://github.com/oneowhat)",
   "engines": {
     "node": "0.8.21",
-    "npm": "1.2.11"
+    "npm": "1.2.18"
   },
   "scripts": {
     "start": "node app"
