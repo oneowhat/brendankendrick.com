@@ -5,7 +5,7 @@
   "private": false,
   "author": "Brendan Kendrick-Walton <brendan@brendankendrick.com> (https://github.com/oneowhat)",
   "engines": {
-    "node": "0.8.20",
+    "node": "0.8.21",
     "npm": "1.2.11"
   },
   "scripts": {
@@ -23,7 +23,6 @@
     "connect-mongo": "~0.3.2",
     "connect-flash": "~0.1.0",
     "knox": "~0.5.5",
-    "moment": "~2.0.0",
     "view-helpers": "0.0.2",
     "validator": "~0.4.28"
   }
