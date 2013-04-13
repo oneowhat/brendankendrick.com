@@ -25,8 +25,9 @@ var Article = new Schema({
     email: { type: String, default: '', trim: true },
     url: { type: String, default: '', trim: true },
     body: { type: String, default: '' },
-    createdAt: { type : Date, default : Date.now }
+    createdAt: { type: Date, default: Date.now }
   }],
+  commentCount: { type: Number, default: 0 },
   active: { type: Boolean, default: true }
 });
 
@@ -62,7 +63,14 @@ Article.statics = {
       .populate('user', 'name')
       .sort({'createdAt': -1}) // sort by date
       .limit(options.perPage)
-      .skip(options.perPage * options.page)
+      .skip(options.perPage * (options.page-1))
+      .exec(cb)
+  },
+  
+  popular: function (limit, cb) {
+    this.find()
+      .sort({'commentCount': -1}) // comment count?
+      .limit(limit)
       .exec(cb)
   }
 };

@@ -18,6 +18,7 @@ module.exports = function(app, passport, auth) {
 
   var articles = require('../app/controllers/articles');
   app.get('/articles', articles.index);
+  app.get('/articles/page/:page', articles.index);
   app.get('/articles/new', auth.requiresLogin, articles.new);
   app.post('/articles', auth.requiresLogin, articles.create);
   app.get('/articles/:title', articles.show);
@@ -39,6 +40,5 @@ module.exports = function(app, passport, auth) {
   app.del('/products/:productId', auth.requiresLogin, products.destroy);
   
   app.param('productId', products.product)
-  app.param('title', articles.article)
-  
+  app.param('title', articles.article)  
 };

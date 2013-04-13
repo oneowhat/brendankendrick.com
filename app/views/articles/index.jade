@@ -8,5 +8,11 @@ block articles
   each article in articles
     .article
       include article
-      if (article.comments.length)
-        a(href=articleURL + '#comments') Comments (#{article.comments.length})
+      a(href=articleURL + '#comments') Comments (#{article.commentCount})
+  
+  if (pages > 1)
+    .pagination
+      - var clas;
+      - for (var i = 1; i < pages + 1; i++)
+        - clas = page == i ? 'selected' : ''
+        a(href="/articles/?page=" + i, class=clas) #{i}

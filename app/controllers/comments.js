@@ -1,4 +1,5 @@
 
+// TODO: delete comments
 var helpers = require('view-helpers')
   , sanitize = require('validator').sanitize;
 
@@ -21,6 +22,8 @@ exports.create = function (req, res) {
     url: req.body.url,
     body: body
   });
+  
+  article.commentCount = article.comments.length;
 
   article.save(function (err) {
     if (err) return res.render('500');

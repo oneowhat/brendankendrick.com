@@ -18,6 +18,7 @@ exports.new = function(req, res) {
     title: 'New Article',
     nav: 'nav-articles',
     article: new Article(),
+    popular: [],
     user: req.user
   });
 };
@@ -42,12 +43,15 @@ exports.create = function(req, res) {
 };
 
 exports.show = function(req, res) {
-  res.render('articles/show', {
-    title: req.article.title,
-    nav: 'nav-articles',
-    article: req.article,
-    user: req.user
-  }); 
+  Article.popular(5, function(err, popular) {
+    res.render('articles/show', {
+      title: req.article.title,
+      nav: 'nav-articles',
+      article: req.article,
+      popular: popular,
+      user: req.user
+    }); 
+  });
 };
 
 exports.edit = function(req, res) {
@@ -55,6 +59,7 @@ exports.edit = function(req, res) {
     title: req.article.title,
     nav: 'nav-articles',
     article: req.article,
+    popular: [],
     user: req.user
   });
 };
@@ -77,9 +82,14 @@ exports.update = function(req, res) {
     }
   });
 };
+
+exports.setPage = function(req, res, next, page){
+  req.page = page;
+  next();
+};
   
 exports.index = function(req, res, options){ 
-  var page = req.param('page') > 0 ? req.param('page') : 0;
+  var page = req.param("page") > 1 ? req.param("page") : 1;
   var perPage = 5;
   var options = {
     perPage: perPage,
@@ -89,13 +99,16 @@ exports.index = function(req, res, options){
   Article.list(options, function(err, articles){
     if (err) return res.render('500');
     Article.count().exec(function(err, count){
-      res.render('articles/index', {
-        title: 'Brendan Kendrick | Articles',
-        nav: 'nav-articles',
-        articles: articles,
-        user: req.user,
-        page: page,
-        pages: count / perPage
+      Article.popular(5, function(err, popular) {
+        res.render('articles/index', {
+          title: 'Brendan Kendrick | Articles',
+          nav: 'nav-articles',
+          articles: articles,
+          popular: popular,
+          user: req.user,
+          page: page,
+          pages: count / perPage
+        });
       });
     });
   }); 

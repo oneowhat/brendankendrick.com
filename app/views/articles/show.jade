@@ -7,8 +7,8 @@ block articles
   include article
   
   #comments
-    if (article.comments.length)
-      h4 #{article.comments.length} Comments
+    if (article.commentCount > 0)
+      h4 #{article.commentCount} Comments
       each comment in article.comments
         include ../comments/comment
   #comment-form

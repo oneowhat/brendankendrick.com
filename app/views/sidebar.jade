@@ -1,0 +1,9 @@
+
+if (popular)
+  .sections
+    span.header POPULAR (relatively)
+    .section
+      ul.section-list
+        each popArticle in popular
+          li
+            a(href="/articles/" + popArticle.title) #{popArticle.title}
